@@ -2,15 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
     <security:debug/>
 
-    <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true" />
+    <security:global-method-security pre-post-annotations="enabled" mode="aspectj" />
 
     <security:http use-expressions="true">
-        <security:intercept-url pattern="/**" access="permitAll"/>
+        <security:intercept-url pattern="/WEB-INF" access="permitAll"/>
+        <security:intercept-url pattern="/favicon.ico" access="permitAll" />
+
         <security:form-login/>
         <security:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
         <security:remember-me/>
@@ -36,10 +40,4 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <context:component-scan base-package="com.backbase.poc.authorize"/>
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
 </beans>

@@ -1,4 +1,4 @@
-package com.backbase.poc.authorize;
+package com.backbase.poc.authorize.service;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DummyServiceImpl implements DummyService {
 
-    @Override
+    @PreAuthorize("hasRole('admin')")
     public void securedService() {
     }
 }

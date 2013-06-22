@@ -1,10 +1,9 @@
-package com.backbase.poc.authorize;
+package com.backbase.poc.authorize.service;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
 public interface DummyService {
 
-    @PreAuthorize("hasRole('admin')")
     void securedService();
 
 }
